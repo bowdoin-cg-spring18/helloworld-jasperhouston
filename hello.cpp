@@ -1,5 +1,5 @@
 #include <iostream>
-#include <math.h>
+#include <stdexcept>
 
 using namespace std;
 
@@ -11,8 +11,16 @@ int main(int argc, char** argv) {
 		return 0;
 	}
 	if (argc == 2) {
-		double y = stod(argv[1]);
-		int x = round(y);
+		int x;
+
+		try {
+			x = stoi(argv[1]);
+		}
+		catch(std::invalid_argument& e) {
+			cout << "Invalid argument: not an integer" << endl;
+			return EXIT_FAILURE;
+		}
+
 		if (x > 0) {
 			for (int i = 0; i < x; i++) {
 				cout << "Hello World!" << endl;
